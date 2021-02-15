@@ -25,6 +25,7 @@ let server = http.createServer((req, res) => {
       res.end('invalid path')
     } else {
       if (req.url.endsWith('/')) req.url += 'index.txt'
+      else if (req.url.endsWith('/refs')) req.url += '.html'
       var pathname = url.parse(req.url).pathname
       fs.createReadStream(`.${pathname}`)
         .on('error', () => {
